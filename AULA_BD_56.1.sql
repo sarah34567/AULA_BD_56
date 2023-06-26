@@ -1,0 +1,106 @@
+#CRIACAO DO BANCO DE DADOS
+CREATE DATABASE  empresa_xpto;
+
+#ATIVACAO DO BANCO DE DADOS
+USE empresa_xpto;
+
+#CRIACAO DA TABELA DEPARTAMENTOS
+CREATE TABLE  departamentos (
+id INT,
+nome VARCHAR(60),
+ PRIMARY KEY(id)
+ 
+ );
+ 
+ #SELECIONA A TABELA DEPARTAMENTO
+select * from departamentos;
+
+#INSERE OS DADOS NA TABELA 
+INSERT INTO departamentos values ('1', 'FINANCEIRO');
+INSERT INTO departamentos values('2','VENDAS');
+INSERT INTO departamentos values('3','DESENVOLVIMENTO DE PRODUTOS');
+INSERT INTO departamentos values('4','TI');
+INSERT INTO departamentos values('5', 'JURIDICO');
+INSERT INTO departamentos values('6', 'QUALIDADE');
+INSERT INTO departamentos values('7', 'ADMINISTRACAO');
+INSERT INTO departamentos values('8','ATENDIMENTO AO CLIENTE');
+INSERT INTO departamentos values('9', 'RECURSOS HUMANOS');
+INSERT INTO departamentos values('10', 'MARKETING');
+INSERT INTO departamentos values('11', 'PRODUCAO');
+INSERT INTO departamentos values('12', 'EXECUTIVO');
+INSERT INTO departamentos values('13', 'GERENTE FINANCEIRO');
+INSERT INTO departamentos values('14', 'GERENTE DE MARKETING');
+INSERT INTO departamentos values('15', ' GERENTE DE PRODUCAO');
+
+#ALTERACAO DA TABELA  FUNCIONARIOS
+#ADICIONANDO COLUNA ID_DEPARTAMENTO COMO CHAVE_ESTRANGEIRA
+#FAZENDO REFERENCIA A TABELA DEPARTAMENTO
+ALTER TABLE funcionarios
+ADD COLUMN id_departamento int,
+ADD CONSTRAINT fk_funcionarios_departamentos
+FOREIGN KEY (id_departamento) REFERENCES departamentos(id);
+
+DROP TABLE departamentos;
+
+select * from funcionarios;
+
+#ATUALIZACAO DA TABELA DE DEPARTAMENTO 
+UPDATE funcionarios
+SET id_departamento =1
+WHERE id = 1;
+
+SELECT * FROM funcionarios
+WHERE id=1;
+
+select * from departamentos;
+
+#ATUALIZA O CADASTRO DOS FUNCIONARIOS COM O ID 3,4,5 PARA O DEPARTAMENTO 4(TI)
+UPDATE funcionarios
+SET id_departamento =2
+WHERE id = 3 OR id =4 OR id=5;
+
+#ATUALIZA O CADASTRO DOS FUNCIONARIOS COM O ID 6,7,8,9 PARA O DEPARTAMENTO 4(TI)
+UPDATE funcionarios
+SET id_departamento =4
+WHERE id = 6 OR id =7 OR id=8 OR id=9;
+
+select * from departamentos;
+
+#ATUALIZA O CADASTRO DOS FUNCIONARIOS COM O ID 10,11,12,13 PARA O DEPARTAMENTO 5(JURIDICO)
+UPDATE funcionarios
+SET id_departamento =5
+WHERE id = 10 OR id =11 OR id=12 OR id=13;
+
+#ATUALIZA O CADASTRO DOS FUNCIONARIOS COM O ID 14,15,16,17 PARA O DEPARTAMENTO 9(RECURSOS HUMANOS)
+UPDATE funcionarios
+SET id_departamento =9
+WHERE id = 14 OR id =15 OR id=16 OR id=17;
+
+#BUSCA O FUNCIONARIO COM O MAIOR SALARIO
+SELECT * FROM funcionarios order by salario desc;
+
+#ATUALIZA O DEPARTAMENTO DO FUNCIONARIO COM O MAIOR SALARIO PARA DEPARTAMENTO "JURIDICO"
+UPDATE funcionarios
+SET id_departamento =5
+WHERE id = 44;
+
+#ATUALIZA O DEPARTAMENTO DO FUNCIONARIO COM O SEGUNDO MAIOR SALARIO PARA DEPARTAMENTO "GERENTE FINANCEIRO"
+UPDATE funcionarios
+SET id_departamento =13
+WHERE id = 413;
+
+#ATUALIZA O DEPARTAMENTO DO FUNCIONARIO COM O TERCEIRO MAIOR SALARIO PARA DEPARTAMENTO "GERENTE DE PRODUCAO"
+UPDATE funcionarios
+SET id_departamento =14
+WHERE id = 642;
+
+#ATUALIZA O DEPARTAMENTO DO FUNCIONARIO COM O QUARTO MAIOR SALARIO PARA DEPARTAMENTO "GERENTE DE MARKETING"
+UPDATE funcionarios
+SET id_departamento =15
+WHERE id = 462;
+
+select * from funcionarios;
+select * from departamentos;
+
+
+
